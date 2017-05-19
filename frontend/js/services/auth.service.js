@@ -1,48 +1,45 @@
-(function(){
+(function() {
     'use strict';
 
     angular.module('app.services').factory('AuthService', AuthService);
 
     AuthService.$inject = ['$sessionStorage', 'API', '$timeout', '$q', 'Restangular'];
 
-    function AuthService($sessionStorage, API, $timeout, $q, Restangular){
+    function AuthService($sessionStorage, API, $timeout, $q, Restangular) {
 
-        return{
-            login: function(user){
+        return {
+            login: function(user) {
                 return $q(function(resolve, reject) {
-                    resolve(
-                        {
-                            token: 'jok'
-                        }
-                    )
+                    resolve({
+                        token: 'jok'
+                    })
                 });
             },
-            logout: function(){
-                return $q(function(resolve, reject){
+            logout: function() {
+                return $q(function(resolve, reject) {
                     var tokenClaims = {};
                     delete $sessionStorage.token;
-                    $timeout(function(){
+                    $timeout(function() {
                         resolve();
                     }, 110);
                 });
             },
-            logoutOnLeave : function() {
+            logoutOnLeave: function() {
                 delete $sessionStorage.token;
             },
-            getTokenClaims: function(){
-                return $q(function(resolve, reject){
+            getTokenClaims: function() {
+                return $q(function(resolve, reject) {
                     var claims = getClaimsFromToken();
 
-                    if(claims){
+                    if (claims) {
                         resolve(claims);
-                    }
-                    else{
+                    } else {
                         reject('Could not get token claims');
                     }
                 });
             },
-            getCurrentUser: function(){
-                return $q(function(resolve, reject){
+            getCurrentUser: function() {
+                return $q(function(resolve, reject) {
                     var token = $sessionStorage.token;
                     //var currentUser = getClaimsCurrent(token);
                     var currentUser = {
@@ -50,10 +47,9 @@
                         id: 1
                     };
 
-                    if(currentUser){
+                    if (currentUser) {
                         resolve(currentUser);
-                    }
-                    else {
+                    } else {
                         reject('There is no current user');
                     }
 
@@ -61,17 +57,17 @@
             }
         };
 
-        function urlBase64Decode(str){
+        function urlBase64Decode(str) {
             var output = str.replace('-', '+').replace('_', '/');
 
-            switch (output.length % 4){
+            switch (output.length % 4) {
                 case 0:
                     break;
                 case 2:
                     output += '==';
                     break;
                 case 3:
-                    output+= '=';
+                    output += '=';
                     break;
                 default:
                     throw 'Illegal base64url string!';
@@ -81,7 +77,7 @@
         }
 
         function getClaimsFromToken() {
-            if ($sessionStorage.token){
+            if ($sessionStorage.token) {
                 var token = $sessionStorage.token;
             }
             var user = {};

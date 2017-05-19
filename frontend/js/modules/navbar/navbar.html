@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light" ng-controller="SidebarController as vm">
+<nav class="navbar navbar-light">
     <a class="navbar-brand" ui-sref="amex.map"><img src="images/logo.svg"></a>
 
     <ul class="nav navbar-nav collapse out">
@@ -21,49 +21,43 @@
                         {{eventObj.title}}
                         <span class="date">{{eventObj.starts_at}} - {{eventObj.ends_at}}</span>
                     </a>
-                <li>
-                <div class="add-event-sticker" ng-click="vm.openAddModal()">Add event</div>
+                    <li>
+                        <div class="add-event-sticker" ng-click="vm.openAddModal()">Add event</div>
             </ul>
-        </li><!--
-     --><li class="nav-item"
-            ng-class="{'disabled': !(vm.selectedEvent && vm.selectedEvent.title)}"
-            ng-click="vm.openEditModal()"
-        >
-            <a class="nav-link">
-                <svg class="icon icon-edit-event"><use xlink:href="#icon-edit-event"></use></svg>
-                Edit event
-            </a>
-        </li><!--
-     --><li class="nav-item disabled"
-            ng-class="{'disabled': !(vm.selectedEvent && vm.selectedEvent.title)}"
-        >
-            <a class="nav-link" ui-sref="amex.map" ui-sref-active="active">
-                <svg class="icon icon-map"><use xlink:href="#icon-map"></use></svg>
-                Map
-            </a>
-        </li><!--
-     --><li class="nav-item disabled"
-            ng-class="{'disabled': !(vm.selectedEvent && vm.selectedEvent.title)}"
-        >
-            <a class="nav-link" ui-sref="amex.participants" ui-sref-active="active">
-                <svg class="icon icon-participants"><use xlink:href="#icon-participants"></use></svg>
-                Participants
-            </a>
-        </li><!--
-     --><li class="nav-item disabled"
-            ng-class="{'disabled': !(vm.selectedEvent && vm.selectedEvent.title)}"
-        >
-            <a class="nav-link" ui-sref="amex.index" ui-sref-active="active">
-                <svg class="icon icon-ranking"><use xlink:href="#icon-ranking"></use></svg>
-                Rankings
-            </a>
-        </li>
+            </li>
+            <!--
+     -->
+            <li class="nav-item" ng-class="{'disabled': !(vm.selectedEvent && vm.selectedEvent.title)}" ng-click="vm.openEditModal()">
+                <a class="nav-link">
+                    <svg class="icon icon-edit-event"><use xlink:href="#icon-edit-event"></use></svg> Edit event
+                </a>
+            </li>
+            <!--
+     -->
+            <li class="nav-item disabled" ng-class="{'disabled': !(vm.selectedEvent && vm.selectedEvent.title)}">
+                <a class="nav-link" ui-sref="amex.map" ui-sref-active="active">
+                    <svg class="icon icon-map"><use xlink:href="#icon-map"></use></svg> Map
+                </a>
+            </li>
+            <!--
+     -->
+            <li class="nav-item disabled" ng-class="{'disabled': !(vm.selectedEvent && vm.selectedEvent.title)}">
+                <a class="nav-link" ui-sref="amex.participants" ui-sref-active="active">
+                    <svg class="icon icon-participants"><use xlink:href="#icon-participants"></use></svg> Participants
+                </a>
+            </li>
+            <!--
+     -->
+            <li class="nav-item disabled" ng-class="{'disabled': !(vm.selectedEvent && vm.selectedEvent.title)}">
+                <a class="nav-link" ui-sref="amex.index" ui-sref-active="active">
+                    <svg class="icon icon-ranking"><use xlink:href="#icon-ranking"></use></svg> Rankings
+                </a>
+            </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <li class="nav-item" ng-click="vm.logout()">
             <a class="nav-link">
-                <svg class="icon icon-logout"><use xlink:href="#icon-logout"></use></svg>
-                Logout
+                <svg class="icon icon-logout"><use xlink:href="#icon-logout"></use></svg> Logout
             </a>
         </li>
     </ul>
