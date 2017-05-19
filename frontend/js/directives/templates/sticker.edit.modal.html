@@ -1,0 +1,86 @@
+<div class="modal in" id="edit-sticker" style="display: block; padding-right: 17px;" ng-cloak>
+    <div class="modal-dialog modal-light modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit sticker</h2>
+            </div>
+            <form name="stickerEditForm" class="modal-body">
+
+                <div class="col-md-8">
+
+                    <div class="input-group"
+                         ng-class="{'has-error': (stickerEditForm.title.$error.required && !stickerEditForm.title.$pristine) || (stickerEditForm.title.$error.required && addStickerClicked), 'has-success': (!stickerEditForm.title.$error.required && !stickerEditForm.title.$pristine) || (!stickerEditForm.title.$error.required && addStickerClicked)}">
+                        <input type="text" name="title" ng-model="stickerEdit.title" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Title</label>
+                    </div>
+
+                    <div class="input-group"
+                         ng-class="{'has-error': (stickerEditForm.description.$error.required && !stickerEditForm.description.$pristine) || (stickerEditForm.description.$error.required && addStickerClicked), 'has-success': (!stickerEditForm.description.$error.required && !stickerEditForm.description.$pristine) || (!stickerEditForm.description.$error.required && addStickerClicked)}">
+                        <textarea name="description" rows="6" ng-model="stickerEdit.description" required></textarea>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Description</label>
+                    </div>
+
+                    <div class="input-group"
+                         ng-class="{'has-error': ((stickerEditForm.value.$error.required || stickerEditForm.value.$error.number) && !stickerEditForm.value.$pristine) || ((stickerEditForm.value.$error.required || stickerEditForm.value.$error.number) && addStickerClicked), 'has-success': (!(stickerEditForm.value.$error.required || stickerEditForm.value.$error.number) && !stickerEditForm.value.$pristine) || (!(stickerEditForm.value.$error.required || stickerEditForm.value.$error.number) && addStickerClicked)}">
+                        <input type="number" name="value" ng-model="stickerEdit.value" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Value</label>
+                    </div>
+
+                    <div class="input-group"
+                         ng-class="{'has-error': (!stickerEdit.latitude && addStickerClicked), 'has-success': (stickerEdit.latitude && addStickerClicked)}">
+                        <input type="number" ng-model="stickerEdit.latitude" disabled ng-class="{'has_value': stickerEdit.latitude}" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Latitude</label>
+                    </div>
+
+                    <div class="input-group"
+                         ng-class="{'has-error': (!stickerEdit.longitude && addStickerClicked), 'has-success': (stickerEdit.longitude && addStickerClicked)}">
+                        <input type="number" ng-model="stickerEdit.longitude" disabled ng-class="{'has_value': stickerEdit.longitude}" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Longitude</label>
+                    </div>
+
+                    <button type="button" class="btn btn-normal" ng-click="pickEditMap()">Select sticker location</button>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-4 sticker-image-holder">
+                    <label class="sticker-picture-label">Picture</label>
+                    <div ng-if="uploaderStickerEdit.isHTML5" class="col-md-12" ng-click="openAddUpload()">
+                        <div filters="" ng-class="{'my-drop-zone': !(uploaderStickerEdit.queue && uploaderStickerEdit.queue.length > 0 || stickerEdit.image_url)}" nv-file-over="" uploader="uploaderStickerEdit">
+                            <span ng-hide="uploaderStickerEdit.queue.length > 0 || stickerEdit.image_url">Upload sticker image</span>
+                            <div ng-repeat="item in uploaderStickerEdit.queue">
+                                <div ng-thumb="{ file: item._file, height: 100 }" style="text-align: center"></div>
+                            </div>
+                            <img class="uploadedImage" ng-src="{{stickerEdit.image_url}}" ng-if="!uploaderStickerEdit.queue.length > 0">
+                        </div>
+                        <input type="file" id="addUpload" filters="" name="image" nv-file-select="" uploader="uploaderStickerEdit" class="uploader"/>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-normal" ng-disabled="!uploaderStickerEdit.queue.length > 0" ng-click="uploaderStickerEdit.queue[0].upload()">Upload image</button>
+                        <div class="input-group" ng-class="{'has-error': (!stickerEdit.icon_url && editStickerClicked), 'has-success': (stickerEdit.icon_url && editStickerClicked)}" ng-if="(!stickerEdit.icon_url && editStickerClicked)">
+                            <label>{{(!stickerEdit.icon_url && editStickerClicked) ? 'Image is required and must be uploaded' : 'Image is uploaded'}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-normal" ng-click="editSticker()">Save</button>
+                    <button type="button" class="btn btn-delete" ng-click="openStickerDelete()">Delete</button>
+                    <button type="button" class="btn btn-normal" ng-click="closeStickerModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

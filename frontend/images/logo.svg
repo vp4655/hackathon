@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="377" height="189" viewBox="0 0 377 189" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="c" cx="40.967%" cy="32.994%" r="73.453%" fx="40.967%" fy="32.994%">
+      <stop stop-color="#FF9696" offset="0%"/>
+      <stop stop-color="#FF0000" offset="100%"/>
+    </radialGradient>
+    <ellipse id="b" cx="116.969" cy="25.51" rx="21.547" ry="21.585"/>
+    <filter id="a" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox">
+      <feOffset dy="6" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="6.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
+    </filter>
+    <ellipse id="e" cx="331.926" cy="139.884" rx="21.547" ry="21.585"/>
+    <filter id="d" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox">
+      <feOffset dy="6" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="6.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
+    </filter>
+    <ellipse id="g" cx="246.921" cy="21.585" rx="21.547" ry="21.585"/>
+    <filter id="f" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox">
+      <feOffset dy="6" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="6.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
+    </filter>
+    <ellipse id="i" cx="89.266" cy="96.433" rx="21.547" ry="21.585"/>
+    <filter id="h" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox">
+      <feOffset dy="6" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="6.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(11 7)">
+    <path stroke="#FED898" stroke-width="21.56" d="M116.397253,26.9215096 C85.2942081,11.1278128 50.7703396,13.4540687 23.1429783,38.0235471 C-7.7143261,68.9589867 -7.7143261,118.296692 23.1429783,148.894862 C50.7703396,176.885216 103.594714,179.304071 134.070257,148.894862 C164.5458,118.485653 188.621576,68.3777992 217.524232,38.0235471 C246.426887,7.66929508 297.021564,10.3704621 324.868738,38.0235471 C355.506229,68.9589867 355.506229,118.296692 324.868738,148.894862 C297.021564,179.968823 247.520318,176.605162 217.524232,148.894862 C187.528145,121.184561 174.483624,96.3158317 149.350488,96.3158317 C124.217352,96.3158317 87.5592264,96.3158317 87.5592264,96.3158317" stroke-linecap="round"/>
+    <use fill="black" filter="url(#a)" xlink:href="#b"/>
+    <use fill="url(#c)" xlink:href="#b"/>
+    <use fill="black" filter="url(#d)" xlink:href="#e"/>
+    <use fill="url(#c)" xlink:href="#e"/>
+    <g>
+      <use fill="black" filter="url(#f)" xlink:href="#g"/>
+      <use fill="url(#c)" xlink:href="#g"/>
+    </g>
+    <g>
+      <use fill="black" filter="url(#h)" xlink:href="#i"/>
+      <use fill="url(#c)" xlink:href="#i"/>
+    </g>
+  </g>
+</svg>

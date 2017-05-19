@@ -1,0 +1,23 @@
+<nav class="stickers navbar-light" ng-class="{'active': stickerSidebarOpened}" ng-cloak>
+    <div class="stickers-navbar-title">
+        <svg class="icon icon-stickers"><use xlink:href="#icon-stickers"></use></svg>
+        Stickers
+    </div>
+    <div class="stickers-navbar-content">
+        <div class="search">
+            <input type="search" placeholder="Search..." ng-model="stickerSidebarSearchText">
+        </div>
+        <ul>
+            <li ng-repeat="sticker in stickerSidebarEvent.stickers | filter: stickerSidebarSearchText"
+                ng-click="openEditStickerModal(sticker)"
+                ng-mouseover="hoverMap(sticker.id)"
+                ng-mouseleave="unHoverMap(sticker.id)"
+            >
+                <a>{{sticker.title}}<span class="desc">{{sticker.description}}</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="stickers-navbar-footer">
+        <div class="add-event-sticker" ng-click="openAddStickerModal()">Add sticker</div>
+    </div>
+</nav>

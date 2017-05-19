@@ -1,0 +1,44 @@
+.btn {
+  border-radius: $border-radius;
+  border: 0px;
+  padding: 1em 2em;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .2s all;
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &-normal {
+    background: $brand-color-light;
+    color: $white;
+
+    &:hover {
+      background: darken($brand-color-light, 10%);
+    }
+  }
+  &-delete {
+    background: $brand-color-light;
+    color: $white;
+
+    &:hover {
+      background: $button-red;
+    }
+  }
+  &-blue {
+    background: $button-blue;
+    color: $white;
+  }
+  &-red {
+    background: $button-red;
+  }
+  &-upload {
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    z-index: 9;
+  }
+}

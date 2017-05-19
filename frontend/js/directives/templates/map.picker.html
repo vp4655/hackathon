@@ -1,0 +1,17 @@
+<div class="modal in" id="map-picker" style="display: block; padding-right: 17px" ng-cloak>
+    <div class="modal-dialog modal-light map-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Pick position</h4>
+            </div>
+            <div class="modal-body map-in-modal" ng-show="showMap">
+                <ui-gmap-google-map ng-if="map2.control" refresh="true" ng-cloak control='map2.control' center='map2.center || 1' zoom='map2.zoom' options='map2.options' events="map2.events">
+                    <ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker>
+                </ui-gmap-google-map>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-blue" ng-click="confirmPick()">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>

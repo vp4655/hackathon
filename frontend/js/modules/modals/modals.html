@@ -1,0 +1,15 @@
+<div ng-controller="ModalsController as vm" style="height: 100%">
+    <event-add-modal ng-show="vm.addModalOpened" ng-cloak></event-add-modal>
+    <event-edit-modal ng-show="vm.editModalOpened" ng-cloak></event-edit-modal>
+    <event-delete-modal ng-show="vm.deleteModalOpened" ng-cloak></event-delete-modal>
+    <sticker-edit-modal ng-show="vm.stickerModalOpened" ng-cloak></sticker-edit-modal>
+    <sticker-add-modal ng-show="vm.stickerAddModalOpened" ng-cloak></sticker-add-modal>
+    <sticker-delete-modal ng-show="vm.stickerDeleteModalOpened" ng-cloak></sticker-delete-modal>
+    <participants-modal ng-show="vm.participantsModalOpened"></participants-modal>
+    <sticker-sidebar></sticker-sidebar>
+    <div ng-if="vm.mapPickerOpened">
+        <map-picker></map-picker>
+    </div>
+    <div ui-view="main"></div>
+    <div class="modal-backdrop in" id="modalBackdrop" ng-show="vm.mapPickerOpened || vm.addModalOpened || vm.editModalOpened || vm.deleteModalOpened || vm.stickerModalOpened || vm.stickerAddModalOpened || vm.mainDocument.getElementById('main-body').querySelector('[spinner-key=spinner-1]').children.length > 0"></div>
+</div>

@@ -1,0 +1,91 @@
+<div class="modal in" id="edit-event" style="display: block; padding-right: 17px;" ng-cloak>
+    <div class="modal-dialog modal-light modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit event</h2>
+            </div>
+            <div class="row">
+
+                <div ng-if="uploaderEdit.isHTML5" class="col-md-12" ng-click="openAddUpload()">
+                    <div filters="" ng-class="{'my-drop-zone': !(uploaderEdit.queue && uploaderEdit.queue.length > 0 || updateEvent.image_url)}" nv-file-over="" uploader="uploaderEdit">
+                        <span ng-hide="uploaderEdit.queue.length > 0 || updateEvent.image_url">Upload event image</span>
+                        <div ng-repeat="item in uploaderEdit.queue">
+                            <div ng-thumb="{ file: item._file, height: 100 }" style="text-align: center"></div>
+                        </div>
+                        <img class="uploadedImage" ng-src="{{updateEvent.image_url}}" ng-if="!uploaderEdit.queue.length > 0">
+                    </div>
+                    <input type="file" id="addUpload" name="image" filters="" nv-file-select="" uploader="uploaderEdit" class="uploader"/>
+                    <button type="button" class="btn btn-normal btn-upload" ng-disabled="!uploaderEdit.queue.length > 0" ng-click="uploaderEdit.queue[0].upload()">Upload</button>
+                    <div class="input-group" ng-class="{'has-error': (!updateEvent.image_url && editEventClicked), 'has-success': (updateEvent.image_url && editEventClicked)}" ng-if="(!updateEvent.image_url && editEventClicked)">
+                        <label>{{(!updateEvent.image_url && editEventClicked) ? 'Image is required and must be uploaded' : 'Image is uploaded'}}</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <form name="updateEventForm" class="modal-body">
+
+                <div class="col-md-12 input-group"
+                     ng-class="{'has-error': (updateEventForm.title.$error.required && !updateEventForm.title.$pristine) || (updateEventForm.title.$error.required && editEventClicked), 'has-success': (!updateEventForm.title.$error.required && !updateEventForm.title.$pristine) || (!updateEventForm.title.$error.required && editEventClicked)}">
+                    <input type="text" name="title" ng-model="updateEvent.title" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Title</label>
+                </div>
+
+                <div class="col-md-12 input-group"
+                     ng-class="{'has-error': (updateEventForm.description.$error.required && !updateEventForm.description.$pristine) || (updateEventForm.description.$error.required && editEventClicked), 'has-success': (!updateEventForm.description.$error.required && !updateEventForm.description.$pristine) || (!updateEventForm.description.$error.required && editEventClicked)}">
+                    <textarea type="text" name="description" ng-model="updateEvent.description" required></textarea>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Description</label>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 input-group"
+                         ng-class="{'has-error': ((updateEventForm.startsAt.$error.required) && !updateEventForm.startsAt.$pristine) || ((updateEventForm.startsAt.$error.required || updateEventForm.startsAt.$error.date) && editEventClicked), 'has-success': (!(updateEventForm.startsAt.$error.required || updateEventForm.startsAt.$error.date) && !updateEventForm.startsAt.$pristine) || (!(updateEventForm.startsAt.$error.required || updateEventForm.startsAt.$error.number) && editEventClicked)}">
+                        <md-datepicker ng-model="updateEvent.start_date" name="startsAt" md-placeholder="Start date" required></md-datepicker>
+                    </div>
+
+                    <div class="col-md-6 input-group input-group-last"
+                         ng-class="{'has-error': ((updateEventForm.endsAt.$error.required) && !updateEventForm.endsAt.$pristine) || ((updateEventForm.endsAt.$error.required || updateEventForm.endsAt.$error.date) && editEventClicked), 'has-success': (!(updateEventForm.endsAt.$error.required || updateEventForm.endsAt.$error.date) && !updateEventForm.endsAt.$pristine) || (!(updateEventForm.endsAt.$error.required || updateEventForm.endsAt.$error.number) && editEventClicked)}">
+                        <md-datepicker ng-model="updateEvent.end_date" name="endsAt" md-placeholder="End date" required></md-datepicker>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="input-group col-md-6"
+                         ng-class="{'has-error': (!updateEvent.location.latitude && editEventClicked), 'has-success': (updateEvent.location.latitude && editEventClicked)}">
+                        <input type="number" ng-model="updateEvent.location.latitude" ng-class="{'has_value': updateEvent.location.latitude}" disabled required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Latitude</label>
+                    </div>
+
+                    <div class="input-group col-md-6"
+                         ng-class="{'has-error': (!updateEvent.location.longitude && editEventClicked), 'has-success': (updateEvent.location.longitude && editEventClicked)}">
+                        <input type="number" ng-model="updateEvent.location.longitude" ng-class="{'has_value': updateEvent.location.longitude}" disabled required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Longitude</label>
+                    </div>
+
+                </div>
+
+                <button type="button" class="btn btn-normal center-block" ng-click="openEditMapPicker()">Select event location</button>
+
+                <div class="clearfix"></div>
+
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-normal" ng-click="editEvent()">Save</button>
+                    <button type="button" class="btn btn-delete" ng-click="openDeleteModal()">Delete</button>
+                    <button type="button" class="btn btn-normal" ng-click="closeEidtModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

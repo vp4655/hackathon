@@ -1,0 +1,42 @@
+<div class="modal in" id="rankings" style="display: block; padding-right: 17px;" ng-cloak>
+    <div class="modal-dialog modal-light modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Rankings</h2>
+            </div>
+            <form name="participantsForm" class="modal-body">
+
+                <div class="input-group"
+                     ng-class="{'has-error': (participantsForm.firstName.$error.required && !participantsForm.firstName.$pristine) || (participantsForm.firstName.$error.required && inviteClicked), 'has-success': (!participantsForm.firstName.$error.required && !participantsForm.firstName.$pristine) || (!participantsForm.firstName.$error.required && inviteClicked)}">
+                    <input type="text" ng-model="participant.first_name" name="firstName" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>First Name</label>
+                </div>
+
+                <div class="input-group"
+                     ng-class="{'has-error': (participantsForm.lastName.$error.required && !participantsForm.lastName.$pristine) || (participantsForm.lastName.$error.required && inviteClicked), 'has-success': (!participantsForm.lastName.$error.required && !participantsForm.lastName.$pristine) || (!participantsForm.lastName.$error.required && inviteClicked)}">
+                    <input type="text" ng-model="participant.last_name" name="lastName" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Last Name</label>
+                </div>
+
+                <div class="input-group"
+                     ng-class="{'has-error': ((participantsForm.email.$error.required || participantsForm.email.$error.email) && !participantsForm.email.$pristine) || ((participantsForm.email.$error.required || participantsForm.email.$error.email) && inviteClicked), 'has-success': (!(participantsForm.email.$error.required || participantsForm.email.$error.email) && !participantsForm.email.$pristine) || (!(participantsForm.email.$error.required || participantsForm.email.$error.email) && inviteClicked)}">
+                    <input type="email" ng-model="participant.email" name="email" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>E-mail</label>
+                </div>
+
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-normal" ng-click="inviteParticipant()">Invite</button>
+                    <button type="button" class="btn btn-normal" ng-click="closeParticipantsModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

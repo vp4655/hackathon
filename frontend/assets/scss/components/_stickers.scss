@@ -1,0 +1,108 @@
+$max-stickers-navigation-width: 300px;
+
+
+nav {
+  &.stickers {
+    right: 0;
+    top: 100px;
+    bottom: 0;
+    width: auto;
+    border-radius: $border-radius 0 0 0;
+    max-width: $max-stickers-navigation-width;
+    overflow: hidden;
+    z-index: 10;
+
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+
+    transition: all 1s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+
+    &.active {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+
+      transition: all 1s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    }
+
+    .stickers-navbar-title {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      padding: 1.5em 2em 1.5em 4em;
+      color: $white;
+      transition: .25s all;
+      border-bottom: 1px solid rgba($brand-color-dark, .05);
+      background: $brand-color-light;
+
+      .icon {
+        fill: $white;
+        top:10px;
+      }
+    }
+
+    .stickers-navbar-footer {
+      width:100%;
+      position: absolute;
+      bottom:0;
+    }
+    .stickers-navbar-content {
+      height: calc(100% - 134px);
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    ul {
+      li {
+        display: block;
+        width:100%;
+
+        &:last-child a {
+          border-bottom: none; // remove border from last dropdown item
+        }
+
+        > a {
+          display: block;
+          padding: $nav-sub-link-padding;
+          clear: both;
+          font-weight: normal;
+          color: $dropdown-link-color;
+
+          border-bottom: 1px solid rgba($brand-color-dark, .05);
+
+          // Hover/Focus nav link state
+          &:hover,
+          &:focus {
+            text-decoration: none;
+            color: $dropdown-link-hover-color;
+            background-color: $dropdown-link-hover-bg;
+          }
+          &:before {  // edit event pencil icon
+            content: "";
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            top: 50%;
+            right: 0;
+            opacity: 0;
+            background: url("img/menu-edit.svg") no-repeat center;
+            transform: translateY(-50%) translateX(50px) rotate(180deg);
+            transition: .25s all;
+          }
+          &:hover {
+            &:before {
+              content: "";
+              opacity: 1;
+              background: url("img/menu-edit.svg") no-repeat center;
+              transform: translateY(-50%) translateX(0px) rotate(0deg);
+              transition: .25s all;
+            }
+          }
+        }
+
+        a {
+          padding:1em 4em 1em 1.5em;
+        }
+      }
+    }
+  }
+}

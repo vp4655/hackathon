@@ -1,0 +1,273 @@
+// .datepicker {
+//   padding: 2em;
+//   border-radius: $border-radius;
+//   box-shadow: 0 50px 100px rgba(0,0,0,.35);
+//   position: absolute;
+//   left: 0;
+//   z-index: 9999;
+//   &:before {
+//     content: '';
+//     display: inline-block;
+//     border-left:   7px solid transparent;
+//     border-right:  7px solid transparent;
+//     border-bottom: 7px solid #ccc;
+//     border-top:    0;
+//     position: absolute;
+//   }
+//   table{
+//     margin: 0;
+//     -webkit-touch-callout: none;
+//     -webkit-user-select: none;
+//     -khtml-user-select: none;
+//     -moz-user-select: none;
+//     -ms-user-select: none;
+//     user-select: none;
+//     tr {
+//       td, th {
+//         text-align: center;
+//         width: 30px;
+//         height: 30px;
+//         border-radius: 4px;
+//
+//         border: none;
+//       }
+//     }
+//   }
+//   table tr td {
+//     &.selected,
+//     &.selected:hover,
+//     &.selected.disabled,
+//     &.selected.disabled:hover {
+//       // @include datepicker-button-variant(#fff, $gray-light);
+//       text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+//     }
+//     &.active,
+//     &.active:hover,
+//     &.active.disabled,
+//     &.active.disabled:hover {
+//       // @include datepicker-button-variant(#fff, $brand-primary);
+//       text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+//     }
+//     span {
+//       display: block;
+//       width: 23%;
+//       height: 54px;
+//       line-height: 54px;
+//       float: left;
+//       margin: 1%;
+//       cursor: pointer;
+//       border-radius: 4px;
+//       &:hover {
+//         background: $gray;
+//       }
+//       &.disabled,
+//       &.disabled:hover {
+//         background: none;
+//         color: gray;
+//         cursor: default;
+//       }
+//       &.active,
+//       &.active:hover,
+//       &.active.disabled,
+//       &.active.disabled:hover {
+//         // @include datepicker-button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+//         text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+//       }
+//       &.old,
+//       &.new {
+//         color: gray;
+//       }
+//     }
+//   }
+//
+//   th.datepicker-switch {
+//     width: 145px;
+//   }
+//
+//   thead tr:first-child th,
+//   tfoot tr th {
+//     cursor: pointer;
+//     color: $white;
+//     &:hover{
+//       background: gray;
+//     }
+//   }
+//   /*.dow {
+//     border-top: 1px solid #ddd !important;
+//   }*/
+//
+//   // Basic styling for calendar-week cells
+//   .cw {
+//     font-size: 10px;
+//     width: 12px;
+//     padding: 0 2px 0 5px;
+//     vertical-align: middle;
+//   }
+//   thead tr:first-child th.cw {
+//     cursor: default;
+//     background-color: transparent;
+//   }
+// }
+
+
+.bootstrap-datetimepicker-widget {
+  &.dropdown-menu {
+    padding: 2em;
+    width: 19em;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: $brand-color-light;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-radius: $border-radius;
+    box-shadow: 0 50px 100px rgba(0,0,0,.35);
+
+    &.bottom:before,
+    &.top:before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      left: 20px;
+    }
+
+    &.bottom:before {
+      border-bottom: 7px solid $brand-color-light;
+      border-bottom-color: $brand-color-light;
+      top: -7px;
+    }
+    &.top:before {
+      border-top: 7px solid $brand-color-light;
+      border-top-color: $brand-color-light;
+      bottom: -7px;
+    }
+  }
+  .list-unstyled {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .picker-switch {
+    text-align: center;
+
+    &:after {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+      content: "Toggle Date and Time Screens";
+    }
+  }
+  table {
+    width: 100%;
+    margin: 0;
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    td {
+      &.day {
+        height: 30px;
+        line-height: 20px;
+        color: $white;
+      }
+      &.day:hover,
+      &.day.focused {
+        background: darken($brand-color-light, 10%);
+        cursor: pointer;
+      }
+      &.old,
+      &.new {
+        color: rgba($white, .25);
+      }
+      &.disabled,
+      &.disabled:hover {
+        background: none;
+        color: gray;
+        cursor: default;
+      }
+      &.today,
+      &.today:hover,
+      &.today.disabled,
+      &.today.disabled:hover {
+        background: $brand-color-dark;
+        color: $white;
+      }
+      &.today:hover:hover { // Thank bootstrap 2.0 for this selector...
+        // TODO: Bump min BS to 2.1, use $textColor in buttonBackground above
+        color: red;
+      }
+      &.today.active:hover {
+        color: #fff;
+      }
+    }
+
+    thead tr:first-child th {
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    th {
+      height: 20px;
+      line-height: 20px;
+      width: 20px;
+      color: $white;
+
+      &.picker-switch {
+        width: 145px;
+      }
+      &.prev::after {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+        content: "Previous Month";
+      }
+    }
+    td,
+    th {
+      text-align: center;
+      border-radius: 4px;
+    }
+    .dow {
+      padding:10px 0;
+    }
+  }
+}
+
+.prev,
+.next {
+  background: url("img/left-arrow.svg") center no-repeat;
+}
+.next {
+  transform: rotate(180deg);
+}
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

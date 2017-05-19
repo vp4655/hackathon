@@ -1,0 +1,52 @@
+<div ng-controller="ParticipantsController as vm" style="height: 100%;">
+    <div class="container participants">
+        <div class="modal-header">
+            <h2>Participants</h2>
+        </div>
+        <form name="participantsMainForm" class="modal-body">
+
+            <div class="col-md-offset-2 col-md-5 input-group"
+                 ng-class="{'has-error': ((participantsMainForm.email.$error.required || participantsMainForm.email.$error.email) && !participantsMainForm.email.$pristine) || ((participantsMainForm.email.$error.required || participantsMainForm.email.$error.email) && vm.inviteMeClicked), 'has-success': (!(participantsMainForm.email.$error.required || participantsMainForm.email.$error.email) && !participantsMainForm.email.$pristine) || (!(participantsMainForm.email.$error.required || participantsMainForm.email.$error.email) && vm.inviteMeClicked)}">
+                <input type="email" name="email" ng-model="vm.email" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>E-mail</label>
+            </div>
+
+            <div class="col-md-3">
+                <button type="button" class="btn btn-blue" ng-click="vm.invite()">Invite to join</button>
+            </div>
+
+            <div class="invite-error-holder col-md-12" ng-if="(vm.inviteMessage.type === 'error' && !vm.email) || (vm.inviteMessage.type === 'success' && vm.invitedNow)">
+                <span class="invite-message" ng-class="vm.inviteMessage.type">
+                    {{vm.inviteMessage.message}}
+                </span>
+            </div>
+
+            <div class="row participant-header">
+                <div class="col-md-7">
+                    <label class="participant-label">Mail</label>
+                </div>
+                <div class="col-md-3">
+                    <label class="participant-label">Status</label>
+                </div>
+                <div class="col-md-2">
+                    <label class="participant-label">Options</label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row participant" ng-repeat="participant in vm.participants">
+                <div class="col-md-7 participant-mail">
+                    {{participant.email}}
+                </div>
+                <div class="col-md-3" ng-class="{'accepted': !(participant.type === 'pending'), 'pending': participant.type === 'pending'}">
+                    {{participant.type === 'pending' ? 'Pending' : 'Accepted'}}
+                </div>
+                <div class="col-md-2">
+                    <span class="remove"></span>
+                    <span class="resend"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

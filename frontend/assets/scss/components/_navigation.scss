@@ -1,0 +1,432 @@
+.navbar-right {
+  float: right !important;
+}
+
+.add-event-sticker { // add event link
+  display: block;
+  padding: 1.5em 2em 1.5em 1.5em;
+  background: rgba($brand-color-light, .1);
+  text-decoration: none;
+  color: $brand-color-dark;
+  transition: .25s all;
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 0;
+    opacity: 0;
+    background: url("img/menu-add.svg") no-repeat center;
+    transform: translateY(-50%) translateX(32px) rotate(180deg) scale(0);
+    transition: .25s all;
+  }
+
+  &:hover {
+    padding-left: 3.5em;
+    transition: .25s all;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      opacity: 1;
+      background: url("img/menu-add.svg") no-repeat center;
+      transform: translateY(-50%) translateX(32px) rotate(0deg) scale(1);
+      transition: .25s all;
+    }
+  }
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+nav {
+  p {
+    display: inline-block;
+    margin:0;
+  }
+
+  &.navbar {
+    width: 100%;
+    z-index:10;
+  }
+
+  .search {
+    background: rgba($brand-color-light, .1);
+    padding:1em;
+
+    input {
+      width:100%;
+      background: $white;
+      border:1px solid rgba($brand-color-light, .25);
+      padding: .5em;
+      box-sizing: border-box;
+      transition: .25s all;
+
+      &:focus,
+      &:active {
+        box-shadow: 0 0 5px rgba($brand-color-light, .75);
+        outline: none;
+        transition: .25s all;
+      }
+    }
+  }
+
+  &.navbar,
+  &.stickers {
+    position: fixed;
+    box-shadow: 0 0 30px rgba($black, .2);
+  }
+
+  .nav {
+    display: inline-block;
+    border-left: 1px solid rgba($brand-color-dark, .05);
+  }
+  .icon {
+    position: absolute;
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: #d8d8d8;
+    left: .5em;
+    top: .5em;
+  }
+
+  ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0; // Override default ul/ol
+    list-style: none;
+    @include clearfix;
+
+    > li {
+     position: relative;
+     display: inline-block;
+
+      &:focus {
+        outline: none;
+      }
+
+     > a {
+       position: relative;
+       display: block;
+       text-decoration: none;
+       padding: $nav-link-padding;
+       color: $brand-color-dark;
+       transition: .25s all;
+
+       .date,
+       .desc {
+         display: block;
+         font-size: 14px;
+         color: rgba($brand-color-dark, .5);
+       }
+
+       &:hover,
+       &:focus,
+       &.active {
+         text-decoration: none;
+         background: $brand-color-light;
+         outline: none;
+         color: $white;
+
+         .icon {
+           fill: $white;
+         }
+       }
+     }
+     // Disabled state sets text to gray and nukes hover/tab effects
+      &.disabled > a {
+        color: $nav-disabled-link-color;
+
+        .icon {
+          fill: rgba($nav-disabled-link-color, .1);
+        }
+
+        &:hover,
+        &:focus {
+          color: $nav-disabled-link-hover-color;
+          text-decoration: none;
+          background-color: transparent;
+          cursor: $cursor-disabled;
+
+          .icon {
+            fill: rgba($nav-disabled-link-color, .1);
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-brand {
+    display: inline-block;
+    position: relative;
+    padding: 1em 1.5em;
+    margin: 0;
+    font-weight: 500;
+    text-decoration: none;
+    color: $brand-color-dark;
+    transition: .25s all;
+
+    img {
+      width:50px;
+    }
+
+    &:hover {
+      color: $brand-color-light;
+    }
+  }
+
+  .backdropfilter & {
+    &.navbar-light {
+      background: rgba($white, .75);
+      -webkit-backdrop-filter: blur(5px) saturate(180%);
+    }
+    &.navbar-dark {
+      background: rgba($black, .75);
+      -webkit-backdrop-filter: blur(5px) saturate(180%);
+    }
+  }
+  .no-backdropfilter & {
+    &.navbar-light {
+      background: rgba($white, .95);
+    }
+    &.navbar-dark {
+      background: rgba($black, .75);
+    }
+  }
+}
+
+
+//
+// Dropdown menus
+// --------------------------------------------------
+
+
+// Dropdown arrow/caret
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top:   $caret-width-base dashed;
+  border-top:   $caret-width-base solid \9; // IE8
+  border-right: $caret-width-base solid transparent;
+  border-left:  $caret-width-base solid transparent;
+}
+
+// The dropdown wrapper (div)
+.dropup,
+.dropdown {
+  position: relative;
+}
+
+// Prevent the focus on the dropdown toggle when closing dropdowns
+.dropdown-toggle:focus {
+  outline: 0;
+}
+
+// The dropdown menu (ul)
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $zindex-dropdown;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: 160px;
+  padding: 0;
+  margin: 0; // override default ul
+  list-style: none;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  background: $dropdown-bg;
+  @include box-shadow(0 6px 12px rgba(0,0,0,.175));
+  background-clip: padding-box;
+  border-radius: 0 0 $border-radius $border-radius;
+  overflow: hidden;
+
+  // Aligns the dropdown menu to right
+  //
+  // Deprecated as of 3.1.0 in favor of `.dropdown-menu-[dir]`
+  &.pull-right {
+    right: 0;
+    left: auto;
+  }
+
+  // Dividers (basically an hr) within the dropdown
+  .divider {
+    @include nav-divider($dropdown-divider-bg);
+  }
+
+  // Links within the dropdown menu
+  > li{
+    width:100%;
+
+    &.menu-wrapper { // min and max height for dropdown menu
+      min-height:110px;
+      max-height: calc(100vh - 154px);
+      overflow-y: scroll;
+
+      > a {
+        display: block;
+        padding: $nav-sub-link-padding;
+        clear: both;
+        font-weight: normal;
+        color: $dropdown-link-color;
+        white-space: nowrap; // prevent links from randomly breaking onto new lines
+
+        border-bottom: 1px solid rgba($brand-color-dark, .05);
+
+        &:last-child {
+          border-bottom: none; // remove border from last dropdown item
+        }
+
+        // Hover/Focus nav link state
+        &:hover,
+        &:focus {
+          text-decoration: none;
+          color: $dropdown-link-hover-color;
+          background-color: $dropdown-link-hover-bg;
+        }
+      }
+    }
+  }
+  // Active state
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $dropdown-link-active-color;
+      text-decoration: none;
+      outline: 0;
+      background-color: $dropdown-link-active-bg;
+    }
+  }
+  > .disabled > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $dropdown-link-disabled-color;
+    }
+
+    // Nuke hover/focus effects
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      background-color: transparent;
+      cursor: $cursor-disabled;
+    }
+  }
+}
+
+// Disabled state
+//
+// Gray out text and ensure the hover/focus state remains gray
+
+
+// Open state for the dropdown
+.open {
+  // Show the menu
+  > .dropdown-menu {
+    display: block;
+  }
+
+  // Remove the outline when :focus is triggered
+  > a {
+    outline: 0;
+  }
+}
+
+// Menu positioning
+//
+// Add extra class to `.dropdown-menu` to flip the alignment of the dropdown
+// menu with the parent.
+.dropdown-menu-right {
+  left: auto; // Reset the default from `.dropdown-menu`
+  right: 0;
+}
+// With v3, we enabled auto-flipping if you have a dropdown within a right
+// aligned nav component. To enable the undoing of that, we provide an override
+// to restore the default dropdown menu alignment.
+//
+// This is only for left-aligning a dropdown menu within a `.navbar-right` or
+// `.pull-right` nav component.
+.dropdown-menu-left {
+  left: 0;
+  right: auto;
+}
+
+// Dropdown section headers
+.dropdown-header {
+  display: block;
+  padding: 3px 20px;
+  font-size: 12px;
+  line-height: 12;
+  color: $dropdown-header-color;
+  white-space: nowrap; // as with > li > a
+}
+
+// Backdrop to catch body clicks on mobile, etc.
+.dropdown-backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: ($zindex-dropdown - 10);
+}
+
+// Right aligned dropdowns
+.pull-right > .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+//
+// Just add .dropup after the standard .dropdown class and you're set, bro.
+// TODO: abstract this so that the navbar fixed styles are not placed here?
+
+.dropup,
+.navbar-fixed-bottom .dropdown {
+  // Reverse the caret
+  .caret {
+    border-top: 0;
+    border-bottom: $caret-width-base dashed;
+    border-bottom: $caret-width-base solid \9; // IE8
+    content: "";
+  }
+  // Different positioning for bottom up menu
+  .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+  }
+}
+
+
+// Component alignment
+//
+// Reiterate per navbar.less and the modified component alignment there.
+
+@media (min-width: $grid-float-breakpoint) {
+  .navbar-right {
+    .dropdown-menu {
+      right: 0; left: auto;
+    }
+    // Necessary for overrides of the default right aligned menu.
+    // Will remove come v4 in all likelihood.
+    .dropdown-menu-left {
+      left: 0; right: auto;
+    }
+  }
+}
+
+.icon-logout {
+  margin-top: 2px;
+}

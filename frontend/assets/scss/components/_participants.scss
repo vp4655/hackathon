@@ -1,0 +1,78 @@
+.row.participant {
+  line-height: 29px;
+}
+
+.participants {
+  .modal-header {
+    padding:6em 2em 2em 2em;
+  }
+  .participant {
+    &-mail {
+      padding: 5px 0;
+
+    }
+
+    &-header {
+      margin-bottom: 20px;
+    }
+
+    &-label {
+      //position: absolute;
+      //top: -30px;
+      //left: 15px;
+      font-size: 12px;
+      color: lighten($brand-color-dark, 50%);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 200px;
+    }
+    .accepted {
+      &:before {
+        content: '';
+        position: absolute;
+        background: url("img/icon-accepted.svg") center center no-repeat;
+        width: 16px;
+        height: 16px;
+        top:6px;
+        left: -8px;
+      }
+    }
+    .pending {
+      &:before {
+        content: '';
+        position: absolute;
+        background: url("img/icon-pending.svg") center center no-repeat;
+        width: 16px;
+        height: 16px;
+        top:6px;
+        left: -8px;
+      }
+    }
+    .remove,
+    .resend {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+
+      &:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+
+    .remove {
+      background: url("img/icon-remove.svg") center center no-repeat;
+    }
+    .resend {
+      background: url("img/icon-resend.svg") center center no-repeat;
+
+      &.resending {
+        transition: all 2s;
+        transform: rotate(-720deg);
+      }
+      &.sent {
+        background: url("img/icon-accepted.svg") center center no-repeat;
+      }
+    }
+  }
+}

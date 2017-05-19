@@ -1,0 +1,64 @@
+<div ng-controller="MainController as vm" style="height: 100%">
+    <div class="container rankings">
+        <div class="modal-header">
+            <h2>Rankings</h2>
+        </div>
+        <div class="modal-body">
+
+            <div class="row ranking-header">
+                <div class="col-md-offset-2 col-md-1 text-center">
+                    <label class="ranking-label">Rank</label>
+                </div>
+                <div class="col-md-5">
+                    <label class="ranking-label">User</label>
+                </div>
+                <div class="col-md-2 text-center">
+                    <label class="ranking-label">Points</label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row ranking first" ng-if="vm.first.score > -1">
+                <div class="col-md-offset-2 col-md-1 rank  text-center">
+                    1.
+                </div>
+                <div class="col-md-5 ranking-mail">
+                    {{vm.first.user.email}}
+                </div>
+                <div class="col-md-2 text-center">
+                    {{vm.first.score}}
+                </div>
+            </div>
+            <div class="row ranking second" ng-if="vm.second.score > -1">
+                <div class="col-md-offset-2 col-md-1 rank text-center">
+                    2.
+                </div>
+                <div class="col-md-5 ranking-mail">
+                    {{vm.second.user.email}}
+                </div>
+                <div class="col-md-2 text-center">
+                    {{vm.second.score}}
+                </div>
+            </div>
+            <div class="row ranking third" ng-if="vm.third.score > -1">
+                <div class="col-md-offset-2 col-md-1 rank text-center">
+                    3.
+                </div>
+                <div class="col-md-5 ranking-mail">
+                    {{vm.third.user.email}}
+                </div>
+                <div class="col-md-2 text-center">
+                    {{vm.third.score}}
+                </div>
+            </div>
+
+            <hr ng-if="vm.rankings && vm.rankings.length > 0">
+
+            <div class="row ranking" ng-if="vm.rankings && vm.rankings.length > 0" ng-repeat="ranking in vm.rankings">
+                <div class="col-md-offset-2 col-md-1 rank text-center">{{$index + 4}}.</div>
+                <div class="col-md-5 ranking-mail">{{ranking.user.email}}</div>
+                <div class="col-md-2 text-center">{{ranking.score}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop in" ng-show="vm.addModalOpened || vm.editModalOpened || vm.deleteModalOpened || vm.stickerModalOpened"></div>
+</div>

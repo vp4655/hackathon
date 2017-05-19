@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+// Colors
+//
+$white: #fff;
+$black: #000;
+$gray: #333;
+
+$brand-color-dark: #303036;
+$brand-color-light: #3498DB;
+$button-blue: $brand-color-light;
+$button-red: #FF6560;
+$border-radius: 13px;
+
+$nav-link-padding: 1.5em 2em 1.5em 4em;
+$nav-sub-link-padding: 1em 1.5em;
+$nav-disabled-link-color: rgba($brand-color-dark, .35);
+$nav-disabled-link-hover-color: $nav-disabled-link-color;
+$cursor-disabled: not-allowed !default;
+
+// Modal
+$modal-md: 600px;
+$modal-lg: 850px;
+$modal-title-padding: 4em;
+$modal-inner-padding: 0em 4em;
+$modal-footer-padding: 4em;
+$zindex-modal: 9999;
+$zindex-modal-background: 9998;
+$modal-backdrop-bg: rgba($brand-color-dark, .8);
+
+//== Dropdowns
+//
+//## Dropdown menu container and contents.
+$zindex-dropdown:          1000 !default;
+$caret-width-base:          4px !default;
+
+//** Background for the dropdown menu.
+$dropdown-bg:                    $white;
+//** Divider color for between dropdown items.
+$dropdown-divider-bg:            #e5e5e5 !default;
+
+//** Dropdown link text color.
+$dropdown-link-color:            $brand-color-dark !default;
+//** Hover color for dropdown links.
+$dropdown-link-hover-color:      $dropdown-link-color !default;
+//** Hover background for dropdown links.
+$dropdown-link-hover-bg:         rgba(lighten($brand-color-light, 15%), .5) !default;
+
+//** Active dropdown menu item text color.
+$dropdown-link-active-color:     red !default;
+//** Active dropdown menu item background color.
+$dropdown-link-active-bg:        yellow !default;
+
+//** Disabled dropdown menu item background color.
+$dropdown-link-disabled-color:   purple !default;
+
+//** Text color for headers within dropdown menus.
+$dropdown-header-color:          green !default;
+
+//** Deprecated `$dropdown-caret-color` as of v3.1.0
+$dropdown-caret-color:           #000 !default;
+
+
+// Fonts
+$body-font: 'Roboto', sans-serif;
+// Inlcudes
+//
+// Mixins
+@import "./mixins/center-block";
+@import "./mixins/clearfix";
+@import "./mixins/grid-framework";
+@import "./mixins/grid";
+@import "./mixins/image";
+@import "./mixins/opacity";
+@import "./mixins/reset-text";
+@import "./mixins/hide-text";
+@import "./mixins/responsive-visibility";
+@import "./mixins/vendor-prefixes";
+@import './mixins/datepicker';
+@import './mixins/nav-divider';
+
+// Components
+@import './components/normalize';
+@import './components/grid';
+@import './components/responsive-utilities';
+@import './components/scaffolding';
+@import './components/utilities';
+@import './components/navigation';
+@import './components/modals';
+@import './components/forms';
+@import './components/buttons';
+@import './components/component-animations';
+@import './components/stickers';
+@import './components/search-bar';
+@import './components/participants';
+@import './components/rankings';
+
+// Uncomment for visual checking of boxes widths, paddings, margins
+// * { background-color: rgba(255,0,0,.2); }
+// * * { background-color: rgba(0,255,0,.2); }
+// * * * { background-color: rgba(0,0,255,.2); }
+// * * * * { background-color: rgba(255,0,255,.2); }
+// * * * * * { background-color: rgba(0,255,255,.2); }
+// * * * * * * { background-color: rgba(255,255,0,.2); }
+body {
+	font-family: $body-font;
+	font-size: 16px;
+	height: 100%;      // preventing bouncing overscroll
+	overflow: auto;    // preventing bouncing overscroll
+}
+
+html {                 // preventing bouncing overscroll
+	overflow: hidden;  // preventing bouncing overscroll
+	height: 100%;      // preventing bouncing overscroll
+}
+
+// Alignment
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
+
+.vcenter {
+	@media (min-width: $screen-sm-max) {
+		display: inline-block;
+		vertical-align: middle;
+		float: none;
+	}
+}
+.map {
+	height: 100%;
+	width: 100%;
+	border: 0;
+	z-index: 10;
+}
+html, body, .content-holder{
+	height: 100%;
+}
+.md-datepicker-calendar-pane {
+	z-index: 9999 !important;
+}
+
+.md-icon-button+.md-datepicker-input-container {
+	width: 70%;
+}
+
+.map-modal {
+	width: auto !important;
+}
+
+.map-in-modal .angular-google-map-container {
+	height: 330px !important;
+	width: 650px !important;
+}
+
+.map-full-screen .angular-google-map,
+.map-full-screen .angular-google-map-container {
+	width: 100%;
+	height: 100%;
+}
+
+.stickers-navbar-content .desc {
+	max-height: 125px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+	display: -webkit-box;
+	-webkit-line-clamp: 8;
+	-webkit-box-orient: vertical;
+}
+
+.my-drop-zone {
+	background: rgba($brand-color-light, .1) url("img/img-placeholder.svg") center 3em no-repeat;
+	background-size: 3em;
+	height:10em;
+	text-align: center;
+	margin-bottom: 1em;
+	padding: 0 2em;
+	
+	&:hover {
+		cursor: pointer;
+	}
+
+	span {
+		color: $brand-color-light;
+		top: 6em;
+		position: relative;
+	}
+}
+
+.well {
+	min-height: 20px;
+	padding: 19px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+	clear: both;
+}
+
+.upload-holder {
+	position: relative;
+}
+
+.uploader {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	visibility: visible;
+	z-index: 9;
+	border: 0;
+	color: transparent;
+	opacity: 0;
+}
+
+#events p {
+	max-width: 230px;
+	max-height: 15px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.invite-error-holder {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.invite-message.error {
+	color: #FF6560;
+}
+
+.invite-message.success {
+	color: #68ca62;
+}
+
+.uploadedImage {
+	height: 10em;
+	margin-left: 35%;
+}
+
+.sticker-image-holder .uploadedImage {
+	height: 10em;
+	margin-left: 0;
+}

@@ -1,0 +1,84 @@
+<div class="modal in" id="add-sticker" style="display: block; padding-right: 17px;" ng-cloak ng-blur="blurer">
+    <div class="modal-dialog modal-light modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add sticker</h2>
+            </div>
+            <form class="modal-body" name="stickerAddForm">
+
+                <div class="col-md-8">
+
+                    <div class="input-group"
+                         ng-class="{'has-error': (stickerAddForm.title.$error.required && !stickerAddForm.title.$pristine) || (stickerAddForm.title.$error.required && addStickerClicked), 'has-success': (!stickerAddForm.title.$error.required && !stickerAddForm.title.$pristine) || (!stickerAddForm.title.$error.required && addStickerClicked)}">
+                        <input type="text" ng-model="stickerAdd.title" name="title" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Title</label>
+                    </div>
+
+                    <div class="input-group"
+                         ng-class="{'has-error': (stickerAddForm.description.$error.required && !stickerAddForm.description.$pristine) || (stickerAddForm.description.$error.required && addStickerClicked), 'has-success': (!stickerAddForm.description.$error.required && !stickerAddForm.description.$pristine) || (!stickerAddForm.description.$error.required && addStickerClicked)}">
+                        <textarea name="description" rows="6" ng-model="stickerAdd.description" required></textarea>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Description</label>
+                    </div>
+
+                    <div class="input-group"
+                         ng-class="{'has-error': ((stickerAddForm.value.$error.required || stickerAddForm.value.$error.number) && !stickerAddForm.value.$pristine) || ((stickerAddForm.value.$error.required || stickerAddForm.value.$error.number) && addStickerClicked), 'has-success': (!(stickerAddForm.value.$error.required || stickerAddForm.value.$error.number) && !stickerAddForm.value.$pristine) || (!(stickerAddForm.value.$error.required || stickerAddForm.value.$error.number) && addStickerClicked)}">
+                        <input type="number" name="value" ng-model="stickerAdd.value" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Value</label>
+                    </div>
+
+                    <div class="input-group"
+                         ng-class="{'has-error': (!stickerAdd.latitude && addStickerClicked), 'has-success': (stickerAdd.latitude && addStickerClicked)}">
+                        <input type="number" ng-model="stickerAdd.latitude" ng-class="{'has_value': stickerAdd.latitude}" disabled required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Latitude</label>
+                    </div>
+
+                    <div class="input-group"
+                         ng-class="{'has-error': (!stickerAdd.longitude && addStickerClicked), 'has-success': (stickerAdd.longitude && addStickerClicked)}">
+                        <input type="number" ng-model="stickerAdd.longitude" ng-class="{'has_value': stickerAdd.longitude}" disabled required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Longitude</label>
+                    </div>
+
+                    <button type="button" class="btn btn-normal" ng-click="pickAddMap()">Select sticker location</button>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-4 sticker-image-holder">
+                    <label class="sticker-picture-label">Picture</label>
+                    <div ng-if="uploaderStickerAdd.isHTML5" class="input-group col-md-12" ng-click="openAddUpload()">
+                        <div filters="" ng-class="{'my-drop-zone': !(uploaderStickerAdd.queue && uploaderStickerAdd.queue.length > 0)}" nv-file-over="" uploader="uploaderStickerAdd">
+                            <span ng-hide="uploaderStickerAdd.queue.length > 0">Upload sticker image</span>
+                            <div ng-repeat="item in uploaderStickerAdd.queue">
+                                <div ng-thumb="{ file: item._file, height: 100 }" style="text-align: center"></div>
+                            </div>
+                        </div>
+                        <input type="file" id="addUpload" filters="" nv-file-select="" uploader="uploaderStickerAdd" class="uploader"/>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-normal" ng-disabled="!uploaderStickerAdd.queue.length > 0" ng-click="uploaderStickerAdd.queue[0].upload()">Upload image</button>
+                        <div class="input-group" ng-class="{'has-error': (!stickerAdd.image_url && addStickerClicked), 'has-success': (stickerAdd.image_url && addStickerClicked)}" ng-if="(!stickerAdd.image_url && addStickerClicked)">
+                            <label>{{(!stickerAdd.image_url && addStickerClicked) ? 'Image is required and must be uploaded' : 'Image is uploaded'}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-normal" ng-click="createSticker()">Save</button>
+                    <button type="button" class="btn btn-normal" ng-click="closeAddStickerModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
