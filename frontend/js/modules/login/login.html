@@ -1,5 +1,31 @@
-<div ng-controller="LoginController as vm" class="modal-open" style="position: absolute; height: 100%; width: 100%;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26081603.294420466!2d-95.677068!3d37.06250000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1481713601726" frameborder="0" class="map" allowfullscreen></iframe>
-    <login-modal ng-show="vm.loginOpened"></login-modal>
-    <div class="modal-backdrop in"></div>
+<div class="modal-open" style="position: absolute; height: 100%; width: 100%;">
+    <div class="modal in" style="display: block; padding-right: 17px" id="login" ng-cloak>
+        <div class="modal-dialog modal-light">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><img src="images/logo.svg"></h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="col-md-12 input-group">
+                        <input type="text" ng-model="vm.user.email" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Username</label>
+                    </div>
+
+                    <div class="col-md-12 input-group">
+                        <input type="password" ng-model="vm.user.password" ng-class="{'has_value': vm.user.password}" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Password</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-blue" ng-click="vm.login()">Sign in</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

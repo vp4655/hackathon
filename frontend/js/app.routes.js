@@ -2,15 +2,15 @@
  * Router
  * @namespace Router
  */
-(function(){
+(function() {
     'use strict';
 
     angular.module('app').run(runner);
 
     runner.$inject = ['PermissionStore', '$sessionStorage'];
 
-    function runner (PermissionStore, $sessionStorage) {
-        PermissionStore.definePermission('anonymous', function(){
+    function runner(PermissionStore, $sessionStorage) {
+        PermissionStore.definePermission('anonymous', function() {
             return !$sessionStorage.token;
         });
     }
@@ -28,82 +28,54 @@
      * @param $urlRouterProvider
      * @constructor
      */
-    function RouterConfig($stateProvider, $urlRouterProvider){
-        $urlRouterProvider.otherwise("/map");
+    function RouterConfig($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise("/login");
 
-        var getView = function (module) {
+        var getView = function(module) {
             return './js/modules/' + module + '/' + module + '.html';
         };
 
-        var getSubView = function (module, submodule) {
+        var getSubView = function(module, submodule) {
             return './js/modules/' + module + '/' + module + '.' + submodule + '.html';
         };
 
         $stateProvider
-            .state('amex', {
+            .state('app', {
+                abstract: true,
                 views: {
-                    header: {
-                        templateUrl: getView('navbar')
-                    },
-                    modals: {
-                        templateUrl: getView('modals')
-                    },
-                    main: {},
-                    login: {}
+                    'navbar@': {
+                        templateUrl: getView('navbar'),
+                        controller: 'NavbarController',
+                        controllerAs: 'vm'
+                    }
                 }
             })
-                .state('amex.index', {
-                    url: '/rankings',
-                    data: {
-                        permissions: {
-                            except: ['anonymous'],
-                            redirectTo: 'login'
-                        }
-                    },
-                    views: {
-                        'main@amex': {
-                            templateUrl: getView('main')
-                        }
+            .state('dashboard', {
+                parent: 'app',
+                url: '/dashboard',
+                // data: {
+                //     permissions: {
+                //         except: ['anonymous'],
+                //         redirectTo: 'login'
+                //     }
+                // },
+                views: {
+                    'main@': {
+                        templateUrl: getView('dashboard'),
+                        controller: 'DashboardController',
+                        controllerAs: 'vm'
                     }
-                })
-                .state('amex.participants', {
-                    url: '/participants',
-                    data: {
-                        permissions: {
-                            except: ['anonymous'],
-                            redirectTo: 'login'
-                        }
-                    },
-                    views: {
-                        'main@amex': {
-                            templateUrl: getView('participants')
-                        }
-                    }
-                })
-                .state('amex.map', {
-                    url: '/map',
-                    data: {
-                        permissions: {
-                            except: ['anonymous'],
-                            redirectTo: 'login'
-                        }
-                    },
-                    views: {
-                        'main@amex': {
-                            templateUrl: getView('map')
-                        }
-                    }
-                })
-            .state('login',{
+                }
+            })
+            .state('login', {
                 url: '/login',
                 views: {
                     'login@': {
-                        templateUrl:getView('login')
+                        templateUrl: getView('login'),
+                        controller: 'LoginController',
+                        controllerAs: 'vm'
                     }
                 }
             });
-
-
-        //$locationProvider.html5Mode(true);
     }
 })();
